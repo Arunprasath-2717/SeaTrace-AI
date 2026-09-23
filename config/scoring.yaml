@@ -1,0 +1,9 @@
+version: "1.0"
+
+weights:
+  spatial_proximity: 0.25
+  temporal_overlap: 0.20
+  drift_compatibility: 0.25
+  trajectory: 0.15
+  behaviour_anomaly: 0.10
+  ais_gap_evidence: 0.05

@@ -39,6 +39,11 @@ build/
 .next/
 .out/
 
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
 # IDE & OS
 .DS_Store
 Thumbs.db
