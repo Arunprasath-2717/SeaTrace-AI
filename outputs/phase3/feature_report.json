@@ -1,0 +1,37 @@
+{
+  "incident_id": "INC-2022-0215-GULF-TEST",
+  "fixture_source": "TEST_FIXTURE",
+  "candidate_count": 3,
+  "feature_row_count": 3,
+  "gap_evidence_row_count": 232,
+  "gaps_overlapping_window": 3,
+  "missing_sog_count": 0,
+  "missing_cog_count": 0,
+  "missing_heading_count": 71,
+  "missing_vessel_type_count": 0,
+  "missing_imo_count": 0,
+  "config": {
+    "stationary_speed_threshold_knots": 0.5,
+    "heading_change_threshold_degrees": 5.0,
+    "speed_change_threshold_knots": 1.0,
+    "minimum_dwell_seconds": 60.0,
+    "earth_radius_m": 6371000.0
+  },
+  "output_paths": [
+    "outputs/phase3/candidate_features.csv",
+    "outputs/phase3/candidate_gap_evidence.csv",
+    "outputs/phase3/feature_report.json",
+    "outputs/phase3/feature_report.md"
+  ],
+  "feature_definitions": {
+    "distance_to_origin_50m": "Minimum Haversine distance (metres) to 50% contour centroid",
+    "distance_to_origin_90m": "Minimum Haversine distance (metres) to 90% contour centroid",
+    "min_distance_to_origin": "Minimum of the two contour distances",
+    "mean_distance_to_origin": "Mean distance to 50% centroid across all candidate observations",
+    "track_duration_seconds": "Elapsed seconds from first to last candidate observation",
+    "dwell_duration_seconds": "Sum of observation time-deltas within origin region (seconds)",
+    "stationary_fraction": "Fraction of observations where SOG < stationary_speed_threshold",
+    "heading_change_count": "Count of consecutive COG changes >= heading_change_threshold",
+    "displacement_difference_m": "Observed minus expected displacement (metres); sign and magnitude only \u2014 not an anomaly score"
+  }
+}
