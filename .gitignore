@@ -46,3 +46,19 @@ Thumbs.db
 .vscode/
 *.swp
 *.swo
+
+# Testing & Coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Local Storage / Large Geospatial Artifacts (Master Contract Section 3)
+sea_trace/data/
+data/rasters/
+data/masks/
+data/netcdf/
+data/reports/
+*.tif
+*.tiff
+*.nc
+

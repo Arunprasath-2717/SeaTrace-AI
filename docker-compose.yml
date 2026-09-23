@@ -1,0 +1,69 @@
+# SeaTrace AI - Infrastructure Stack (PostgreSQL/PostGIS + Redis + Shared Storage)
+# Owned by M3: Nithish (GIS / Database)
+# Master Contract: v4.1
+
+version: '3.8'
+
+services:
+  # ---------------------------------------------------------------------------
+  # 1. PostgreSQL 16 with PostGIS 3.4
+  # Core database for all 10 SeaTrace AI entities + Spatial Day-Partitioned AIS
+  # ---------------------------------------------------------------------------
+  db:
+    image: postgis/postgis:16-3.4
+    container_name: seatrace_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-seatrace}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-seatrace_password}
+      POSTGRES_DB: ${POSTGRES_DB:-seatrace_db}
+      PGDATA: /var/lib/postgresql/data/pgdata
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      # Automated schema migrations executed on clean first startup
+      - ./sea_trace/database/sql/001_init_postgis.sql:/docker-entrypoint-initdb.d/01_init_postgis.sql:ro
+      - ./sea_trace/database/sql/002_core_schema.sql:/docker-entrypoint-initdb.d/02_core_schema.sql:ro
+      - ./sea_trace/database/sql/003_partition_maintenance.sql:/docker-entrypoint-initdb.d/03_partition_maintenance.sql:ro
+      # Shared persistent local file store for heavy GeoTIFF, masks, NetCDF
+      - ./sea_trace/data:/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-seatrace} -d ${POSTGRES_DB:-seatrace_db}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - seatrace_network
+
+  # ---------------------------------------------------------------------------
+  # 2. Redis Cache & Queue
+  # Used by M2 Orchestrator (Celery/Redis) for state machine events and status polling
+  # Rasters and NetCDF never travel through Redis (file paths only)
+  # ---------------------------------------------------------------------------
+  redis:
+    image: redis:7-alpine
+    container_name: seatrace_redis
+    restart: unless-stopped
+    command: redis-server --appendonly yes
+    ports:
+      - "${REDIS_PORT:-6379}:6379"
+    volumes:
+      - redisdata:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - seatrace_network
+
+volumes:
+  pgdata:
+    driver: local
+  redisdata:
+    driver: local
+
+networks:
+  seatrace_network:
+    driver: bridge
