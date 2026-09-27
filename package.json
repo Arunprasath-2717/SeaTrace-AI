@@ -1,0 +1,22 @@
+{
+  "name": "seatrace-ai",
+  "version": "1.0.0",
+  "private": true,
+  "description": "SeaTrace AI - 3D Maritime Oil Spill Intelligence & Vessel Attribution Platform",
+  "scripts": {
+    "dev": "npm --prefix frontend run dev",
+    "build": "npm --prefix frontend run build",
+    "preview": "npm --prefix frontend run preview"
+  },
+  "keywords": [
+    "maritime",
+    "oil-spill",
+    "sentinel-1b",
+    "sar",
+    "ais",
+    "hydrodynamic-drift",
+    "vessel-attribution"
+  ],
+  "author": "SeaTrace AI Team",
+  "license": "MIT"
+}
