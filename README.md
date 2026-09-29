@@ -26,3 +26,19 @@ seatrace-ai/
 - **`infra/`**: Infrastructure as code, deployment configurations, and containerization.
 - **`scripts/`**: Automation scripts, utility tools, and setup routines.
 - **`tests/`**: Unit tests, integration tests, and testing suites.
+
+## Getting Started
+
+### Frontend (React + Vite + Cesium + Three.js)
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+### Forensic Export Backend (Flask + Pandas + ReportLab)
+```bash
+cd backend
+pip install -r requirements.txt
+python app.py
+```

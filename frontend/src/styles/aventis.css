@@ -1,0 +1,277 @@
+/* ================================================================
+   AVENTIS YACHT CHARTERS — Luxury Maritime Design System
+   ================================================================ */
+
+:root {
+  /* Ocean Depths & Surfaces */
+  --color-navy-dark: #070F17;
+  --color-navy-card: #0E1B28;
+  --color-navy-surface: #132435;
+
+  /* Nautical Champagne Gold */
+  --color-gold: #C59B5F;
+  --color-gold-light: #DFBE88;
+  --color-gold-dark: #A57D43;
+
+  /* Alabaster & Parchment */
+  --color-cream: #FAF8F5;
+  --color-cream-card: #F4EFEA;
+
+  /* Editorial Typography */
+  --color-text-dark: #121A21;
+  --color-text-muted: #626E7B;
+  --color-text-light: #FFFFFF;
+  --color-text-dim: rgba(255, 255, 255, 0.72);
+
+  /* Borders & Dividers */
+  --border-light: rgba(255, 255, 255, 0.12);
+  --border-dark: rgba(7, 15, 23, 0.08);
+  --border-gold: rgba(197, 155, 95, 0.35);
+
+  /* Elevation & Drop Shadows */
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 12px 30px rgba(0, 0, 0, 0.12);
+  --shadow-lg: 0 20px 45px rgba(0, 0, 0, 0.22);
+  --shadow-gold: 0 8px 25px rgba(197, 155, 95, 0.28);
+
+  /* Border Radii */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
+
+  /* Transitions */
+  --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Fonts */
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Base resets & typography */
+.aventis-root {
+  font-family: var(--font-sans);
+  background-color: var(--color-navy-dark);
+  color: var(--color-text-light);
+  overflow-x: hidden;
+  position: relative;
+}
+
+.aventis-root h1,
+.aventis-root h2,
+.aventis-root h3,
+.aventis-root h4,
+.aventis-root .font-serif {
+  font-family: var(--font-serif);
+}
+
+/* Eyebrows with leading gold line */
+.aventis-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--color-gold);
+}
+
+.aventis-eyebrow::before {
+  content: "";
+  display: inline-block;
+  width: 32px;
+  height: 1.5px;
+  background: var(--color-gold);
+}
+
+/* Primary Gold Button */
+.btn-gold {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-radius: var(--radius-full);
+  padding: 13px 30px;
+  background: var(--color-gold);
+  color: #FFFFFF !important;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  box-shadow: var(--shadow-gold);
+  border: 1px solid var(--color-gold-light);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.btn-gold:hover {
+  background: var(--color-gold-light);
+  color: var(--color-navy-dark) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(197, 155, 95, 0.40);
+}
+
+.btn-gold:active {
+  background: var(--color-gold-dark);
+  transform: translateY(0);
+}
+
+/* Secondary Ghost Button */
+.btn-ghost-gold {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-radius: var(--radius-full);
+  padding: 13px 28px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: #FFFFFF !important;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.btn-ghost-gold:hover {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: var(--color-gold);
+  color: var(--color-gold) !important;
+  transform: translateY(-2px);
+}
+
+/* Nav Link Underline Expansion */
+.aventis-nav-link {
+  position: relative;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: #FFFFFF;
+  opacity: 0.85;
+  text-decoration: none;
+  transition: opacity 0.3s ease, color 0.3s ease;
+  padding: 6px 0;
+}
+
+.aventis-nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0%;
+  height: 1.5px;
+  background: var(--color-gold);
+  transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1), left 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.aventis-nav-link:hover {
+  opacity: 1;
+  color: var(--color-gold);
+}
+
+.aventis-nav-link:hover::after {
+  width: 100%;
+  left: 0%;
+}
+
+/* ════════════════ TOP DESTINATIONS UNCLIPPED SHADOW ARCHITECTURE ════════════════ */
+.destinations-slider-wrapper {
+  position: relative;
+  overflow: hidden;
+  padding: 30px 16px 65px 16px;
+  margin: -30px -16px -65px -16px;
+}
+
+#destinations-slider,
+.destinations-slider {
+  overflow: visible !important;
+}
+
+.destination-card {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: #FFFFFF;
+  box-shadow: var(--shadow-md);
+  transition: var(--transition-smooth);
+  display: flex;
+  flex-direction: column;
+}
+
+.destination-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* ════════════════ CUSTOM LUXURY TRAILING CURSOR ════════════════ */
+#cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  background: var(--color-gold);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.2s ease;
+}
+
+#cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--color-gold);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              height 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              background 0.3s ease,
+              border-color 0.3s ease;
+}
+
+#cursor-ring.active-hover {
+  width: 56px;
+  height: 56px;
+  background: rgba(197, 155, 95, 0.14);
+  border-color: var(--color-gold-light);
+  mix-blend-mode: difference;
+}
+
+@media (pointer: coarse) {
+  #cursor-dot,
+  #cursor-ring {
+    display: none !important;
+  }
+}
+
+/* Pulsing Concentric Rings for Play Badge */
+@keyframes pulseConcentric {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+.pulse-ring {
+  position: absolute;
+  inset: -10px;
+  border: 2px solid var(--color-gold);
+  border-radius: 50%;
+  animation: pulseConcentric 2.2s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+}

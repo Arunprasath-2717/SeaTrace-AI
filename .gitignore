@@ -46,3 +46,9 @@ Thumbs.db
 .vscode/
 *.swp
 *.swo
+
+# Reference & temporary files
+Reference/
+reference/
+scratch/
+*.webm
